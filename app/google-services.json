@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "224535614018",
+    "firebase_url": "https://happygoods-54fd8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "happygoods-54fd8",
+    "storage_bucket": "happygoods-54fd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224535614018:android:e72ef362d5803166a2d3db",
+        "android_client_info": {
+          "package_name": "jp.co.happy_goods"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224535614018-ljpmsma63qbr6325q337gsv9hhsitk50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWWtXFKu4UgJzaNpR5VHWQKpyyOWw0Rbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224535614018-ljpmsma63qbr6325q337gsv9hhsitk50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

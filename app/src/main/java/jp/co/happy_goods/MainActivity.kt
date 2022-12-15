@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val homeFragment = HomeFragment()
-        val heartFragment = HeartFragment()
         val messageFragment = MessageFragment()
         val plusFragment = PlusFragment()
+        val heartFragment = HeartFragment()
         val profileFragment = ProfileFragment()
 
 
@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.homeFragment -> replaceFragment(homeFragment)
-                R.id.heartFragment -> replaceFragment(heartFragment)
                 R.id.messageFragment -> replaceFragment(messageFragment)
-                R.id.homeFragment -> replaceFragment(plusFragment)
+                R.id.plusFragment -> replaceFragment(plusFragment)
+                R.id.heartFragment -> replaceFragment(heartFragment)
                 R.id.profileFragment -> replaceFragment(profileFragment)
             }
             true

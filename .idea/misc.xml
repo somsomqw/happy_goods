@@ -3,14 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/gray_ellipse.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_message_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/menu_click_color.xml" value="0.205" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/banner_img_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_heart.xml" value="0.21739130434782608" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_plus.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.25815217391304346" />
+        <entry key="app/src/main/res/layout/main_drawer_header.xml" value="0.25815217391304346" />
+        <entry key="app/src/main/res/layout/main_toolbar.xml" value="0.25815217391304346" />
         <entry key="app/src/main/res/menu/bottom_nev.xml" value="0.28072916666666664" />
+        <entry key="app/src/main/res/menu/main_drawer_navigation.xml" value="0.2796875" />
       </map>
     </option>
   </component>

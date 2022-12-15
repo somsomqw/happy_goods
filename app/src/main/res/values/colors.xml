@@ -10,4 +10,6 @@
 
     <color name="Gold">#FFFFD700</color>
     <color name="gray_cc">#CCCCCC</color>
+    <color name="gray_ec">#ECECEC</color>
+
 </resources>
