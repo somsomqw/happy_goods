@@ -16,7 +16,8 @@
         android:layout_height="match_parent">
 
         <!-- 툴바 -->
-        <include layout="@layout/main_toolbar"/>
+        <include layout="@layout/main_toolbar"
+            android:id="@+id/toolbarLayout" />
 
         <View
             android:layout_width="0dp"

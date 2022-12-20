@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="jp.co.happy_goods.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/plusFragment"
+        android:name="jp.co.happy_goods.plus.PlusFragment"
+        android:label="PlusFragment"
+        tools:layout="@layout/fragment_plus">
+        <action
+            android:id="@+id/action_plusFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="jp.co.happy_goods.message.MessageFragment"
+        android:label="MessageFragment"
+        tools:layout="@layout/fragment_message"/>
+    <fragment
+        android:id="@+id/heartFragment"
+        android:name="jp.co.happy_goods.heart.HeartFragment"
+        android:label="HeartFragment"
+        tools:layout="@layout/fragment_heart"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="jp.co.happy_goods.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+</navigation>

@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -20,7 +19,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import jp.co.happy_goods.DBKey.Companion.DB_Items
+import jp.co.happy_goods.DBKey.Companion.DB_ITEMS
 import jp.co.happy_goods.R
 import jp.co.happy_goods.databinding.FragmentHomeBinding
 
@@ -92,7 +91,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // 아이템 리사이클러뷰
         itemList.clear()
-        articleDB = Firebase.database.reference.child(DB_Items)
+        articleDB = Firebase.database.reference.child(DB_ITEMS)
 
         itemListAdapter = ItemListAdapter()
 //        itemListAdapter.submitList(mutableListOf<ItemListModel>().apply {
@@ -104,20 +103,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         articleDB.addChildEventListener(listener)
 
+        // search Icon eventListener
+        val toolbar = binding.toolbarLayout
+        val searchIcon = toolbar.searchIcon
+        searchIcon.setOnClickListener {
+            Toast.makeText(context, "검색버튼클릭", Toast.LENGTH_SHORT).show()
+        }
 
         // navigation drawer
-//        val toolbar: Toolbar = view.findViewById(R.id.menuIcon)
-//        toolbar.inflateMenu(R.menu.main_drawer_navigation)
-//        toolbar.setOnMenuItemClickListener {
-//            Log.d("aaaaaa", it.itemId.toString())
-//            when(it.itemId) {
-//                R.id.menuIcon -> {
-//                    Toast.makeText(context, "메뉴바클릭함", Toast.LENGTH_SHORT).show()
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
+        val menuDrawer = toolbar.menuIcon
+        menuDrawer.setOnClickListener {
+            Toast.makeText(context, "메뉴버튼클릭", Toast.LENGTH_SHORT).show()
+        }
 
         return root
     }
@@ -128,7 +125,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         // 다른 페이지로 떠나있는 동안 스크롤이 동작할 필요는 없음. 정지
         autoScrollStart(intervalTime)
     }
-
     override fun onPause() {
         super.onPause()
         // 다른 페이지로 떠나있는 동안 스크롤이 동작할 필요는 없음. 정지

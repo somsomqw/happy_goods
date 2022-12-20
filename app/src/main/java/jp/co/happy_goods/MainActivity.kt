@@ -2,47 +2,55 @@ package jp.co.happy_goods
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import jp.co.happy_goods.heart.HeartFragment
-import jp.co.happy_goods.home.HomeFragment
-import jp.co.happy_goods.message.MessageFragment
-import jp.co.happy_goods.plus.PlusFragment
-import jp.co.happy_goods.profile.ProfileFragment
+import jp.co.happy_goods.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navView: BottomNavigationView
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val homeFragment = HomeFragment()
-        val messageFragment = MessageFragment()
-        val plusFragment = PlusFragment()
-        val heartFragment = HeartFragment()
-        val profileFragment = ProfileFragment()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        navView = binding.bottomNavigationView
 
+        navController = findNavController(R.id.fragmentContainer)
+        navView.setupWithNavController(navController)
+        navController.navigate(R.id.homeFragment)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.homeFragment)
+                }
+                R.id.messageFragment -> {
+                    navController.navigate(R.id.messageFragment)
+                }
+                R.id.plusFragment -> {
+                    navController.navigate(R.id.plusFragment)
+                }
+                R.id.heartFragment -> {
+                    navController.navigate(R.id.heartFragment)
+                }
+                R.id.profileFragment -> {
+                    navController.navigate(R.id.profileFragment)
+                }
 
-        replaceFragment(homeFragment)
-
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when (it.itemId){
-                R.id.homeFragment -> replaceFragment(homeFragment)
-                R.id.messageFragment -> replaceFragment(messageFragment)
-                R.id.plusFragment -> replaceFragment(plusFragment)
-                R.id.heartFragment -> replaceFragment(heartFragment)
-                R.id.profileFragment -> replaceFragment(profileFragment)
             }
             true
         }
+
+        navView.selectedItemId = R.id.homeFragment
     }
 
-    private fun replaceFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction()
-            .apply {
-                replace(R.id.fragmentContainer, fragment)
-                commit()
-            }
-    }
+    fun hideBottomNavi(status: Boolean) = if(status) binding.bottomNavigationView.visibility = View.GONE else
+        binding.bottomNavigationView.visibility = View.VISIBLE
 }
