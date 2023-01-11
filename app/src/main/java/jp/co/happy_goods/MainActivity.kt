@@ -1,19 +1,26 @@
 package jp.co.happy_goods
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import jp.co.happy_goods.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navView: BottomNavigationView
     lateinit var navController: NavController
+    private val auth: FirebaseAuth by lazy{ Firebase.auth}
+    private var backKeyPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +48,14 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.heartFragment)
                 }
                 R.id.profileFragment -> {
-                    navController.navigate(R.id.profileFragment)
+                    if (auth.currentUser != null) {
+                        navController.navigate(R.id.profileFragment)
+                    } else {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
-
             }
             true
         }
@@ -53,4 +65,20 @@ class MainActivity : AppCompatActivity() {
 
     fun hideBottomNavi(status: Boolean) = if(status) binding.bottomNavigationView.visibility = View.GONE else
         binding.bottomNavigationView.visibility = View.VISIBLE
+
+    /**
+     * 端末の戻るボタン監視・
+     */
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        // アプリ内の端末をバックさせるボタンをクリック防止
+        if(System.currentTimeMillis() > backKeyPressedTime + 2500) {
+            backKeyPressedTime = System.currentTimeMillis()
+            return
+        }
+        // 2回クリックするとアプリ終了
+        if(System.currentTimeMillis() <= backKeyPressedTime + 2500){
+            finishAffinity()
+        }
+    }
 }

@@ -10,7 +10,7 @@ import jp.co.happy_goods.databinding.ItemListBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ItemListAdapter: ListAdapter<ItemListModel, ItemListAdapter.ViewHolder>(diffUtil) {
+class ItemListAdapter(val onItemClicked:(ItemListModel) -> Unit): ListAdapter<ItemListModel, ItemListAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(itemListModel: ItemListModel) {
@@ -26,6 +26,10 @@ class ItemListAdapter: ListAdapter<ItemListModel, ItemListAdapter.ViewHolder>(di
                     .load(itemListModel.imageUrl)
                     .into(binding.thumbnailImageView)
             }
+
+            binding.root.setOnClickListener {
+                onItemClicked(itemListModel)
+            }
         }
     }
 
@@ -35,6 +39,7 @@ class ItemListAdapter: ListAdapter<ItemListModel, ItemListAdapter.ViewHolder>(di
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(currentList[position])
+
     }
 
     companion object {

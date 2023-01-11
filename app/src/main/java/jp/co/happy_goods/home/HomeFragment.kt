@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.auth.FirebaseAuth
@@ -20,13 +22,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import jp.co.happy_goods.DBKey.Companion.DB_ITEMS
+import jp.co.happy_goods.MainActivity
 import jp.co.happy_goods.R
 import jp.co.happy_goods.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
-
     private lateinit var itemListAdapter : ItemListAdapter
     private lateinit var articleDB : DatabaseReference
+    private lateinit var navController: NavController
 
     private val itemList = mutableListOf<ItemListModel>()
     private val listener = object: ChildEventListener{
@@ -93,7 +96,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         itemList.clear()
         articleDB = Firebase.database.reference.child(DB_ITEMS)
 
-        itemListAdapter = ItemListAdapter()
+        itemListAdapter = ItemListAdapter(onItemClicked = {
+            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+
+            navController = Navigation.findNavController(root)
+            navController.navigate(R.id.action_homeFragment_to_itemDetailFragment, makeBundle(it))
+        })
 //        itemListAdapter.submitList(mutableListOf<ItemListModel>().apply {
 //            add(ItemListModel("0", "aaa", 100000, "5000", ""))
 //            add(ItemListModel("1", "bbb", 200000, "2000", ""))
@@ -132,7 +140,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
     override fun onDestroyView() {
         super.onDestroyView()
-
+        _binding = null
         articleDB.removeEventListener(listener)
     }
 
@@ -158,5 +166,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 autoScrollStart(intervalTime) // 스크롤을 계속 이어서 한다.
             }
         }
+    }
+
+    private fun makeBundle(it:ItemListModel): Bundle {
+        val bundle = Bundle()
+        bundle.putString("SELLER_ID", it.sellerId)
+        bundle.putString("TITLE", it.title)
+        bundle.putLong("CREATED_AT", it.createdAt)
+        bundle.putString("PRICE", it.price)
+        bundle.putInt("STOCK", it.stock)
+        bundle.putString("DESCRIPTION", it.description)
+        bundle.putString("IMAGE_URL", it.imageUrl)
+        return bundle
     }
 }

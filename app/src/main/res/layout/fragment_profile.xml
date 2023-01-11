@@ -1,13 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ProfileFragment" />
+        android:layout_height="?attr/actionBarSize">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 정보"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray_cc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout" />
+
+        <ImageView
+            android:id="@+id/alertButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_add_alert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/white">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_account_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="유저 아이디"
+            android:textSize="18dp"
+            app:layout_constraintStart_toEndOf="@+id/profileImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="유저 이메일"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/userId"
+            app:layout_constraintTop_toBottomOf="@+id/userId" />
+
+        <ImageView
+            android:id="@+id/profileDetailImage"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/multiProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/multiProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="멀티 프로필"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/multiProfileImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_account_circle"
+            app:layout_constraintBottom_toTopOf="@+id/multiProfileTextView"
+            app:layout_constraintEnd_toEndOf="@+id/multiProfileTextView"
+            app:layout_constraintStart_toStartOf="@+id/multiProfileTextView"
+            app:layout_constraintTop_toBottomOf="@+id/multiProfileText" />
+
+        <TextView
+            android:id="@+id/multiProfileTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="지금 내 아이디"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/addMultiProfileImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_add_circle"
+            app:layout_constraintBottom_toTopOf="@+id/addMultiProfileText"
+            app:layout_constraintEnd_toEndOf="@+id/addMultiProfileText"
+            app:layout_constraintStart_toStartOf="@+id/addMultiProfileText" />
+
+        <TextView
+            android:id="@+id/addMultiProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="만들기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/multiProfileTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

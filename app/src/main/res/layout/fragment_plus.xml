@@ -33,91 +33,372 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray_cc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--스크롤뷰-->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/gray_fa">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/thumbnailImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/gray_cc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/thumbnailButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="썸네일 사진 등록"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/thumbnailImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/thumbnailImageView" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/titleBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/thumbnailImageView">
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="폼 제목"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/titleTextView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/titleEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="폼 제목을 입력해주세요"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/priceBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleBox">
+
+                    <TextView
+                        android:id="@+id/priceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="가격"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/priceTextView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/priceEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/edit_text_border"
+                        android:paddingLeft="10dp"
+                        android:hint="가격을 입력해주세요"
+                        android:textSize="14dp"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/priceTextView" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/stockBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/priceBox">
+
+                    <TextView
+                        android:id="@+id/stockTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="총 개수"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/stockTextView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/stockEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/edit_text_border"
+                        android:paddingLeft="10dp"
+                        android:hint="총 상품 개수를 입력해주세요"
+                        android:textSize="14dp"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/stockTextView" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/descriptionBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stockBox">
+
+                    <TextView
+                        android:id="@+id/descriptionTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="상세 설명"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/descriptionTextView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/descriptionEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/edit_text_border"
+                        android:paddingLeft="10dp"
+                        android:hint="상품 정보를 입력해주세요"
+                        android:textSize="14dp"
+                        android:inputType="text|textMultiLine"
+                        android:scrollbars="vertical"
+                        android:lines="20"
+                        android:gravity="top|left"
+                        android:paddingTop="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/accountBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionBox">
+
+                    <TextView
+                        android:id="@+id/accountTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="계좌번호"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/accountTextView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/bankEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/edit_text_border"
+                        android:paddingLeft="10dp"
+                        app:layout_constraintHorizontal_weight="1"
+                        android:hint="은행명"
+                        android:textSize="14dp"
+                        android:inputType="number"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/accountEditText"
+                        app:layout_constraintTop_toBottomOf="@+id/accountTextView" />
+
+                    <EditText
+                        android:id="@+id/accountEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        app:layout_constraintHorizontal_weight="2"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/edit_text_border"
+                        android:paddingLeft="10dp"
+                        android:hint="계좌번호 입력"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="14dp"
+                        android:inputType="number"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/bankEditText"
+                        app:layout_constraintTop_toBottomOf="@+id/accountTextView" />
+
+                    <EditText
+                        android:id="@+id/accountNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/edit_text_border"
+                        android:paddingLeft="10dp"
+                        android:hint="예금자명"
+                        android:textSize="14dp"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/bankEditText" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
     </ScrollView>
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/gray_cc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarLayout" />
-
-    <ImageView
-        android:id="@+id/thumbnailImageView"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/gray_cc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
-
-    <Button
-        android:id="@+id/thumbnailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="썸네일 사진 등록"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/thumbnailImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/thumbnailImageView" />
-
-    <EditText
-        android:id="@+id/titleEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:hint="폼 제목을 입력해주세요"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thumbnailImageView" />
-
-    <EditText
-        android:id="@+id/priceEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:hint="가격을 입력해주세요"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
 
     <!--하단고정-->
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_margin="3dp"
-        android:backgroundTint="@color/white"
-        android:text="임시저장"
-        android:textColor="@color/gray_cc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/submitButton"
-        app:layout_constraintHorizontal_weight="3"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_margin="3dp"
-        android:backgroundTint="@color/orange_fd"
-        android:text="폼만들기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="7"
-        app:layout_constraintStart_toEndOf="@+id/saveButton" />
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:backgroundTint="@color/white"
+            android:text="임시저장"
+            android:textColor="@color/gray_cc" />
 
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_margin="5dp"
+            android:layout_weight="4"
+            android:backgroundTint="@color/orange_fd"
+            android:text="폼만들기" />
+    </LinearLayout>
 
 </LinearLayout>

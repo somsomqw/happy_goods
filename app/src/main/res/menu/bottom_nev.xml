@@ -16,9 +16,9 @@
     <item
         android:id="@+id/heartFragment"
         android:title="heart"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_bookmark"/>
     <item
         android:id="@+id/profileFragment"
         android:title="profile"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_person"/>
 </menu>

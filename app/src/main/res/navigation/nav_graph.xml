@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="jp.co.happy_goods.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/plusFragment"
         android:name="jp.co.happy_goods.plus.PlusFragment"
@@ -34,4 +38,13 @@
         android:name="jp.co.happy_goods.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="jp.co.happy_goods.home.ItemDetailFragment"
+        android:label="ItemDetailFragment"
+        tools:layout="@layout/fragment_item_detail">
+        <action
+            android:id="@+id/action_itemDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

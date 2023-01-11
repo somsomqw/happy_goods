@@ -16,8 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -61,6 +59,7 @@ class PlusFragment : Fragment(R.layout.fragment_plus) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
         _context.hideBottomNavi(false)
     }
 
@@ -70,7 +69,6 @@ class PlusFragment : Fragment(R.layout.fragment_plus) {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPlusBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         binding.thumbnailButton.setOnClickListener {
             when {
@@ -84,18 +82,34 @@ class PlusFragment : Fragment(R.layout.fragment_plus) {
             }
         }
 
+        binding.saveButton.setOnClickListener {
+            Toast.makeText(requireContext(), "임시저장 되었습니다", Toast.LENGTH_SHORT).show()
+        }
+
         binding.submitButton.setOnClickListener {
-            val title = binding.titleEditText.text
-            val price = binding.priceEditText.text
             val sellerId = auth.currentUser?.uid.orEmpty()
+            val title = binding.titleEditText.text.toString()
+            val price = binding.priceEditText.text.toString()
+            val stock = Integer.parseInt(binding.stockEditText.text.toString())
+            val description = binding.descriptionEditText.text.toString()
+            val bank = binding.bankEditText.text.toString()
+            val account = binding.accountEditText.text.toString()
+            val accountName = binding.accountNameEditText.text.toString()
 
-            val model = ItemListModel(sellerId, "$title", System.currentTimeMillis(), "$price 원", "")
-            itemsDB.push().setValue(model)
-
-            Toast.makeText(requireContext(), "등록되었습니다", Toast.LENGTH_SHORT).show()
-
-            navController = Navigation.findNavController(it)
-            navController.navigate(R.id.action_plusFragment_to_homeFragment)
+            // 이미지가 있으면 업로드과정 추가
+            if (selectedUri != null) {
+                val photoUri = selectedUri ?: return@setOnClickListener
+                uploadPhoto(photoUri,
+                        successHandler = {uri ->
+                            uploadItem(it, sellerId, title, price, stock, description, uri, bank, account, accountName)
+                        },
+                        errorHandler = {
+                            Toast.makeText(requireContext(), "사진 업로드에 실패했습니다", Toast.LENGTH_SHORT).show()
+                        }
+                    )
+            } else {
+                uploadItem(it, sellerId, title, price, stock, description, "", bank, account, accountName)
+            }
         }
 
         binding.backButton.setOnClickListener {
@@ -103,9 +117,7 @@ class PlusFragment : Fragment(R.layout.fragment_plus) {
             navController.navigate(R.id.action_plusFragment_to_homeFragment)
         }
 
-
-
-        return root
+        return binding.root
     }
 
     override fun onRequestPermissionsResult(
@@ -132,7 +144,7 @@ class PlusFragment : Fragment(R.layout.fragment_plus) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode != Activity.RESULT_OK){
+        if(requestCode == Activity.RESULT_OK){
             return
         }
         when (requestCode) {
@@ -159,6 +171,36 @@ class PlusFragment : Fragment(R.layout.fragment_plus) {
             }
             .create()
             .show()
+    }
+
+    private fun uploadPhoto(uri: Uri, successHandler:(String) ->Unit, errorHandler:() ->Unit) {
+        val fileName = "${System.currentTimeMillis()}.png"
+        storage.reference.child("items/photo").child(fileName)
+            .putFile(uri)
+            .addOnCompleteListener{
+                if(it.isSuccessful){
+                    storage.reference.child("items/photo").child(fileName)
+                        .downloadUrl
+                        .addOnSuccessListener { uri ->
+                            successHandler(uri.toString())
+                        }.addOnFailureListener {
+                            errorHandler()
+                        }
+                } else {
+                    errorHandler()
+                }
+            }
+    }
+
+    private fun uploadItem(view: View, sellerId: String, title: String, price: String, stock: Int, description:String, imageUri:String, bank:String, account:String, accountName:String) {
+        val model = ItemListModel(sellerId, title, System.currentTimeMillis(), "$price 원", stock,
+            description, imageUri, bank, account, accountName)
+        itemsDB.push().setValue(model)
+
+        Toast.makeText(requireContext(), "등록되었습니다", Toast.LENGTH_SHORT).show()
+
+        navController = Navigation.findNavController(view)
+        navController.navigate(R.id.action_plusFragment_to_homeFragment)
     }
 
 }
