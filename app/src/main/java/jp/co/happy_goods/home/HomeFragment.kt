@@ -3,7 +3,6 @@ package jp.co.happy_goods.home
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,9 +20,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import jp.co.happy_goods.DBKey.Companion.DB_ITEMS
-import jp.co.happy_goods.MainActivity
+import jp.co.happy_goods.data.DBKey.Companion.DB_ITEMS
 import jp.co.happy_goods.R
+import jp.co.happy_goods.data.ItemListModel
 import jp.co.happy_goods.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -168,7 +167,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun makeBundle(it:ItemListModel): Bundle {
+    private fun makeBundle(it: ItemListModel): Bundle {
         val bundle = Bundle()
         bundle.putString("SELLER_ID", it.sellerId)
         bundle.putString("TITLE", it.title)

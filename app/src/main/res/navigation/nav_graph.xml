@@ -47,4 +47,9 @@
             android:id="@+id/action_itemDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="jp.co.happy_goods.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>

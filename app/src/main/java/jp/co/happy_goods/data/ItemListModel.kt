@@ -1,4 +1,4 @@
-package jp.co.happy_goods.home
+package jp.co.happy_goods.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

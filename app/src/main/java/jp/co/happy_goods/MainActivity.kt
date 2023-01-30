@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -14,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import jp.co.happy_goods.databinding.ActivityMainBinding
+import jp.co.happy_goods.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.heartFragment)
                 }
                 R.id.profileFragment -> {
-                    if (auth.currentUser != null) {
+                    val user = auth.currentUser
+                    if (user?.email != null) {
                         navController.navigate(R.id.profileFragment)
                     } else {
                         val intent = Intent(this, LoginActivity::class.java)

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import jp.co.happy_goods.data.ItemListModel
 import jp.co.happy_goods.databinding.ItemListBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,7 +49,7 @@ class ItemListAdapter(val onItemClicked:(ItemListModel) -> Unit): ListAdapter<It
                 return oldItem.createdAt == newItem.createdAt
             }
 
-            override fun areContentsTheSame(oldItem: ItemListModel, newItem: ItemListModel ): Boolean {
+            override fun areContentsTheSame(oldItem: ItemListModel, newItem: ItemListModel): Boolean {
                 return oldItem == newItem
             }
         }
